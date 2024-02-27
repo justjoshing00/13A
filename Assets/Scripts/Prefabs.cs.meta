@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4dd53585da409fc4c86094170137be38
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Mech: {fileID: 8324011518773126122, guid: 1651d8efb25baa74aa5c0bf7e7c68f7b, type: 3}
+  - Tank: {fileID: 5164187428243037341, guid: 48f9f5b2a0c85b6448195412fb44edb0, type: 3}
+  - Soldier: {fileID: 6480404224678287734, guid: c77bebdb1169cd64693128319177aebb, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
