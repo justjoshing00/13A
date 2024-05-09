@@ -19,7 +19,7 @@ using UnityEngine;
 
 
 //rn, unitselection script is also unit activation script
-class UnitManagementScript
+public class UnitManagementScript
 {
 
     PhaseManager phaseManager;
@@ -27,18 +27,19 @@ class UnitManagementScript
     List<Units.Unit> unitList;
 
     private Units.Unit selectedUnit { get; set; }
-    public Units.Unit SelectedUnit => selectedUnit; 
-    
+    public Units.Unit SelectedUnit => selectedUnit;
+
     private int pendingIndex;
+
+    public static UnitManagementScript unitManagement;
 
     public UnitManagementScript(PhaseManager phaseManager_, PlayerManager playerManager_)
     {
         pendingIndex = 0;
         Debug.Log(phaseManager_);
 
-        init(phaseManager_,playerManager_);
-        unitList = new List<Units.Unit>();
-
+        init(phaseManager_, playerManager_);
+        unitList = null;
 
     }
     void init(PhaseManager phaseManager_, PlayerManager playerManager_)
@@ -47,37 +48,23 @@ class UnitManagementScript
         phaseManager = phaseManager_;
 
     }
+    public static void CreateUM(PhaseManager phaseManager, PlayerManager playerManager)
+    {
+        unitManagement = new(phaseManager, playerManager);
+
+    }
 
 
 
     public void SelectUnit()
     {
-        
-        // this would be in the update loop, checking for inputs
-        if (phaseManager.GetCurrentPhase() == PhaseManager.Phases.Selection)
-        {
-            unitList = playerManager.GetCurrentPlayersUnits(); 
-            
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                PressLeft();
 
+        //FIXME - need to change this whenever we have a new player 
 
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                PressRight();
-                
-            }
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                selectedUnit = PressConfirm(); // i need to store this unit ID somewhere 
-                 
-            }
-        }
+        unitList = playerManager.GetCurrentPlayersUnits();
     }
 
-    void PressLeft()
+    public void PressLeft()
     {
         // in reality, this is a mock of the actual input
         if (pendingIndex <= 0)
@@ -90,7 +77,7 @@ class UnitManagementScript
         }
         Debug.Log(pendingIndex);
     }
-    void PressRight()
+    public void PressRight()
     {
         // in reality, this is a mock of the actual input
         if (pendingIndex >= unitList.Count() - 1)
@@ -106,13 +93,13 @@ class UnitManagementScript
         Debug.Log(pendingIndex);
     }
 
-    Units.Unit PressConfirm()
+    public Units.Unit PressConfirm()
     {
         phaseManager.ChangePhase(1);
         Debug.Log(phaseManager.GetCurrentPhase());
         Debug.Log(unitList[pendingIndex]);
-        
-        return unitList[pendingIndex];
+        unitList[pendingIndex].ucomp.toggleactiveunit();
+        return unitList[pendingIndex]; 
     }
 
  }

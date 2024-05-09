@@ -16,20 +16,50 @@ public class Setup
     public List<Units.Unit> Player2UnitList => player2unitList;
     private List<Player> playerList { get; set; }
     public List<Player> PlayerList => playerList;
-   
 
-   
+    public PlayerManager playerManager;
+    public PhaseManager phaseManager;
+
+    public MovementScript movementScript;
+    public ActionScript actionScript;
+    private UnitManagementScript unitManagementScript;
+
+
+    public PlayerInput playerInput;
+    public MechInput mechInput;
+    public TankInput tankInput;
+    public SoldierInput soldierInput;
+
+    
     public Setup()
     {
         player1unitList = new List<Units.Unit>();
         player2unitList = new List<Units.Unit>();
         playerList = new List<Player>();
+
+        SystemSetup();
         
 
+
+        playerManager = new PlayerManager(playerList);
+        phaseManager = new PhaseManager();
+
         
-        
-        SystemSetup();
+        ActionScript.CreateAS();
+        MovementScript.CreateMS();
+ 
+        UnitManagementScript.CreateUM(phaseManager, playerManager); 
+
+        playerInput = new();
+        mechInput = new();
+        tankInput = new(); 
+        soldierInput = new();
+
+
+
     }
+
+
 
     //TODO: map units to players
     void WorldSetup()

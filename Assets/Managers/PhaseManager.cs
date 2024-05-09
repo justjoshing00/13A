@@ -6,8 +6,8 @@ using System.Numerics;
 using System.Text;
 
 
-class PhaseManager
-{
+  public class PhaseManager
+  {
     public enum Phases
     {
         Selection,

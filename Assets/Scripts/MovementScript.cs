@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementScript : MonoBehaviour
+public class MovementScript : Transform
 {
     //keep in mind this is going to move into stats later
     float movementrange;
     float movementspeed;
     bool canmove;
+
+    public static MovementScript movementScript;
     void Start()
     {
         movementrange = 10;
         movementspeed = 4;
         canmove = true;
     }
-    
-        public void MoveUp()
+
+    public static void CreateMS()
+    {
+        movementScript = new();
+    }
+
+
+    public void MoveUp(Units.Unit selectedunit)
         {
             if (!canmove) return;
-            print("Up");
-            transform.position += movementspeed * Vector3.up * Time.deltaTime;
+            Debug.Log("Up");
+            selectedunit.prefab.transform.position += movementspeed * Vector3.up * Time.deltaTime;
             if (transform.position.y >= Mathf.Abs(movementrange))
         {
 
@@ -32,7 +40,7 @@ public class MovementScript : MonoBehaviour
         public void MoveDown()
         {
             if (!canmove) return;
-            print("Down");
+            Debug.Log("Down");
             transform.position += movementspeed * Vector3.down * Time.deltaTime;
             if (transform.position.y <= Mathf.Abs(movementrange))
             {
@@ -45,7 +53,7 @@ public class MovementScript : MonoBehaviour
         public void MoveLeft()
         {
             if (!canmove) return;
-            print("Left");
+            Debug.Log("Left");
             transform.position += movementspeed * Vector3.left * Time.deltaTime;
             if (transform.position.x <= Mathf.Abs(movementrange))
             {
@@ -57,7 +65,7 @@ public class MovementScript : MonoBehaviour
         public void MoveRight()
         {
             if (!canmove) return;
-            print("Right");
+            Debug.Log("Right");
             transform.position += movementspeed * Vector3.right * Time.deltaTime;
             if (transform.position.x >= Mathf.Abs(movementrange))
             {
@@ -76,7 +84,7 @@ public class MovementScript : MonoBehaviour
     {
     
 
-            print("no remaining movement");
+            Debug.Log("no remaining movement");
             //actually put something here that constrains movement
 
         

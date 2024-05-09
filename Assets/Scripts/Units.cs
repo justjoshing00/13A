@@ -7,8 +7,9 @@ namespace Units
 
     public class Unit
     {
-      
+
         public UnitComponent ucomp;
+
 
         public Unit(in string Name, in int ID, in bool Active)
         {
@@ -16,8 +17,10 @@ namespace Units
             ucomp = new UnitComponent(Name, ID, Active);
         }
 
+        public GameObject prefab;
+
     }
-    
+
 
 
     public class UnitComponent
@@ -52,11 +55,12 @@ namespace Units
     };
     public class Mech : Unit
     {
-       public Mech(in string Name, in int ID, in bool Active) : base( Name , ID, Active)
-       {
-            
+        public Mech(in string Name, in int ID, in bool Active) : base(Name, ID, Active)
+        {
 
-       }
+
+        }
+        
     }
 
     public class Soldier:Unit 

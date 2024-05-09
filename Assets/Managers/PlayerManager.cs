@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-    class PlayerManager
+    public class PlayerManager
     {
 
         
@@ -14,16 +14,17 @@ using System.Threading.Tasks;
         private int i;
 
 
-    public PlayerManager(List<Player> player)
+    public PlayerManager(List<Player> players_)
     {
-        init(player);
+        init(players_);
         i = 0;
     }
 
-    void init(List<Player> player)
+    void init(List<Player> players)
     {
-        players_ = player;
+        players_ = players;
         
+
     }
 
 

@@ -5,10 +5,15 @@ using UnityEngine;
 public class ActionScript
 {
     private bool mode;
-
+    public static ActionScript actionScript;
     public ActionScript()
     {
         mode = false; // boolean represents platform/mobile modes
+
+    }
+    public static void CreateAS()
+    {
+        actionScript = new();
     }
     public void SwitchMode()
     {
